@@ -1,15 +1,14 @@
-<?php  ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-<body>
-    <?php phpinfo(); ?>
-</body>
+require_once __DIR__ . '/vendor/autoload.php';
 
-</html>
+define('APP_PATH', __DIR__);
+
+use App\App;
+
+$app = new App();
+
+$app->run();
