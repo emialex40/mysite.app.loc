@@ -3,10 +3,11 @@
 namespace App\Kernel\Http;
 
 use App\Kernel\Validator\Validator;
+use App\Kernel\Validator\ValidatorInterface;
 
-class Request
+class Request implements RequestInterface
 {
-    private Validator $validaror;
+    private ValidatorInterface $validaror;
 
     public function __construct(
         public readonly array $get,
@@ -22,22 +23,22 @@ class Request
         return new static($_GET, $_POST, $_SERVER, $_FILES, $_COOKIE);
     }
 
-    public function uri()
+    public function uri(): string
     {
         return strtok($this->server['REQUEST_URI'], '?');
     }
 
-    public function method()
+    public function method(): string
     {
         return $this->server['REQUEST_METHOD'];
     }
 
-    public function input(string $key, $default = null)
+    public function input(string $key, $default = null): mixed
     {
         return $this->post[$key] ?? $this->get[$key] ?? $default;
     }
 
-    public function setValidator(Validator $validator)
+    public function setValidator(ValidatorInterface $validator): void
     {
         $this->validaror = $validator;
     }
