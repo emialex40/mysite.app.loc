@@ -5,6 +5,7 @@ namespace App\Kernel\Router;
 use App\Kernel\View\View;
 use App\Kernel\Http\Request;
 use App\Kernel\Http\Redirect;
+use App\Kernel\Session\Session;
 
 class Router
 {
@@ -17,7 +18,8 @@ class Router
     public function __construct(
         private View $view,
         private Request $request,
-        private Redirect $redirect
+        private Redirect $redirect,
+        private Session $session,
     ) {
         $this->initRoute();
     }
@@ -27,9 +29,10 @@ class Router
         $routes = $this->getRoutes();
 
         foreach ($routes as $route) {
-            $this->routes[ $route->getMethod() ][ $route->getUri() ] = $route;
+            $this->routes[$route->getMethod()][$route->getUri()] = $route;
         }
     }
+
     /**
      * getRoutes
      *
@@ -44,7 +47,7 @@ class Router
     {
         $route = $this->findMethod($uri, $method);
 
-        if (!$route) {
+        if (! $route) {
             $this->notFound();
         }
 
@@ -58,6 +61,7 @@ class Router
             call_user_func([$controller, 'setView'], $this->view);
             call_user_func([$controller, 'setRequest'], $this->request);
             call_user_func([$controller, 'setRedirect'], $this->redirect);
+            call_user_func([$controller, 'setSession'], $this->session);
 
             call_user_func([$controller, $action]);
         } else {
@@ -74,10 +78,10 @@ class Router
 
     public function findMethod(string $uri, string $method): Route|false
     {
-        if (! isset($this->routes[ $method ][ $uri ])) {
+        if (! isset($this->routes[$method][$uri])) {
             return false;
         }
 
-        return $this->routes[ $method ][ $uri ];
+        return $this->routes[$method][$uri];
     }
 }

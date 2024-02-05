@@ -2,34 +2,50 @@
 
 namespace App\Kernel\View;
 
-class View {
+use App\Kernel\Session\Session;
 
-	public function page ( string $name ): void {
+class View
+{
+    public function __construct(
+        private Session $session,
+    ) {
+    }
 
-		$viewPath = APP_PATH . "/views/pages/$name.php";
+    public function page(string $name): void
+    {
 
-		if (!file_exists($viewPath)) {
-			throw new VeiwNotFoundExaption("View $name not found");
-		}
+        $viewPath = APP_PATH . "/views/pages/$name.php";
 
-		extract([
-			'view' => $this,
-		]);
+        if (!file_exists($viewPath)) {
+            throw new VeiwNotFoundExaption("View $name not found");
+        }
 
-		include_once $viewPath;
-	}
+        extract($this->defaultData());
 
-	public function component ( string $name ): void {
+        include_once $viewPath;
+    }
 
-		$componentPath = APP_PATH . "/views/components/$name.php";;
+    public function component(string $name): void
+    {
 
-		if (!file_exists($componentPath)) {
-			echo "Component $name not found";
+        $componentPath = APP_PATH . "/views/components/$name.php";
+        ;
 
-			return;
-		}
+        if (!file_exists($componentPath)) {
+            echo "Component $name not found";
 
-		include_once $componentPath;
-	}
+            return;
+        }
 
+        include_once $componentPath;
+    }
+
+    public function defaultData(): array
+    {
+        return [
+        'view' => $this,
+        'session' => $this->session,
+
+        ];
+    }
 }
