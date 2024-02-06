@@ -42,7 +42,7 @@ class Validator implements ValidatorInterface
     {
         switch ($ruleName) {
             case 'required':
-                if ($data[$key] == '') {
+                if (empty($data[$key]) && strlen($data[$key]) == 0) {
                     return "The field $key is required.";
                 }
                 break;

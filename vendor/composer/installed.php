@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '2c052108e3a2ca9385c6b43391cac7ff70667e42',
+    'reference' => '37b0a977603c621371b29031644b4b098982e566',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,25 +18,34 @@
       'aliases' => 
       array (
       ),
-      'reference' => '2c052108e3a2ca9385c6b43391cac7ff70667e42',
+      'reference' => '37b0a977603c621371b29031644b4b098982e566',
+    ),
+    'laravel/pint' => 
+    array (
+      'pretty_version' => 'v1.13.10',
+      'version' => '1.13.10.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e2b5060885694ca30ac008c05dc9d47f10ed1abf',
     ),
     'symfony/polyfill-mbstring' => 
     array (
-      'pretty_version' => 'v1.28.0',
-      'version' => '1.28.0.0',
+      'pretty_version' => 'v1.29.0',
+      'version' => '1.29.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '42292d99c55abe617799667f454222c54c60e229',
+      'reference' => '9773676c8a1bb1f8d4340a62efe641cf76eda7ec',
     ),
     'symfony/polyfill-php80' => 
     array (
-      'pretty_version' => 'v1.28.0',
-      'version' => '1.28.0.0',
+      'pretty_version' => 'v1.29.0',
+      'version' => '1.29.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6caa57379c4aec19c0a12a38b59b26487dcfe4b5',
+      'reference' => '87b68208d5c1188808dd7839ee1e6c8ec3b02f1b',
     ),
     'symfony/var-dumper' => 
     array (
